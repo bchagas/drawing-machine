@@ -1,0 +1,85 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
+  </head>
+
+  <body>
+    <div id="controls">
+      <ul>
+        <li><button id="reset">Reset</button></li>
+        <li><button id="about">About</button></li>
+      </ul>
+    </div>
+
+    <canvas id="shapes" width="700" height="750">
+      Your browser does not support canvas.
+    </canvas>
+
+    <div class="about">
+      <button id="close">X</button>
+      <header>
+        <h1>The Drawing Machine</h1>
+        <h2>Author: Bruno Chagas</h2>
+      </header>
+
+      <p>
+        The Drawing Machine is an APP that helps
+        you to draw a parallelogram from 3 selected points.
+      </p>
+
+      <h3>Usage</h3>
+
+      <p>
+          Click on browser area to create a point,
+          after you have created 3 points, the fourth point will
+          be automatically calculated in order to draw a blue parallelogram
+          with the corners in the center of the points that you have chosen, in addition
+          a yellow circle with the same area and center of mass of the parallelogram.
+          <br><br>
+          If you align the points to make a square the program will re-create the parallelogram :D.
+      </p>
+    </div>
+
+    <div class="captions">
+        <p>PA: Parallelogram Area</p>
+        <p>CA: Cirlce Area</p>
+        <p>CP: Circle Position</p>
+      </dl>
+    </div>
+  </body>
+
+  <script src="./parallelogram.js"></script>
+  <script>
+  window.onload = () => {
+    window.circleArea = Math.PI * 2;
+    window.pointSize = pointSize = 11;
+    const options = {
+        lineWidth: 2,
+        pointSize: window.pointSize,
+        fontFamily: "11pt Courier",
+        circleArea: window.circleArea,
+        minPoints: 3,
+        strokeColors: {
+            blue: "blue",
+            red: "red",
+            yellow: "yellow"
+        },
+        actions: {
+            dragging: false
+        },
+        messages: {
+            error: false
+        },
+        resetButton: "reset",
+        aboutButton: "about",
+        closeButton: "close"
+    };
+
+    const canvas = document.querySelector("canvas");
+    const App = new ShapesApp(canvas);
+    App.initialize(options);
+  }
+  </script>
+</html>
